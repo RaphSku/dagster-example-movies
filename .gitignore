@@ -1,0 +1,8 @@
+# Dagster related
+tmp*
+
+data
+
+# Python related
+__pycache__
+.pytest*

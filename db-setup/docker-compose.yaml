@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:13
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: moviestore
+      POSTGRES_USER: moviemanager
+      POSTGRES_PASSWORD: test
+    ports:
+      - 8085:5433
+    healthcheck:
+      test: ["CMD_SHELL", "pg_isready -d $${POSTGRES_DB} -U $$(POSTGRES_USER)"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+    command: -p 5433
+
+volumes:
+  postgres-data:
+    driver: local
